@@ -4,7 +4,20 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="text-center h-screen w-screen ">
+    <h1 class="text-4xl text-white pt-6">Star Wars interactive Wiki</h1>
+    <div>
+        This will feature a square in the center, with a bog for each type of
+        thing that can be searched and a scroll parallax in the center giving
+        information.
+    </div>
+    @* This is going to be real ugly, but absolute position circle with the buttons on *@
+    <div class="flex h-screen w-screen justify-center items-center">
+        <div class="bg-primary text-white p-4">
+            This is a centered box. Will contain information on clicked image
+
+        </div>
+        
+    </div>
+
 </div>
