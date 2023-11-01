@@ -7,6 +7,7 @@
     <UserSecretsId>da98a18f-ad15-44c0-8d1b-a50e671d307a</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>.</DockerfileContext>
+    <NpmLastInstall>node_modules/.last-install</NpmLastInstall>
   </PropertyGroup>
 
   <ItemGroup>
