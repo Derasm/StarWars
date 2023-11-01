@@ -1,20 +1,72 @@
 ﻿namespace Web.Models
 {
-    public class Film
+    namespace Web.models
     {
-        public string title { get; set; } // The title of this film
-        public int episode_id { get; set; } // The episode number of this film.
-        public string opening_crawl { get; set; } // The opening paragraphs at the beginning of this film.
-        public string director { get; set; } // The name of the director of this film.
-        public string producer { get; set; } // The name(s) of the producer(s) of this film. Comma separated.
-        public DateTime release_date { get; set; } // The ISO 8601 date format of film release at the original creator country.
-        public List<string> species { get; set; } // An array of species resource URLs that are in this film.
-        public List<string> starships { get; set; } // An array of starship resource URLs that are in this film.
-        public List<string> vehicles { get; set; } // An array of vehicle resource URLs that are in this film.
-        public List<string> characters { get; set; } // An array of people resource URLs that are in this film.
-        public List<string> planets { get; set; } // An array of planet resource URLs that are in this film.
-        public string url { get; set; } // The hypermedia URL of this resource.
-        public string created { get; set; } // The ISO 8601 date format of the time that this resource was created.
-        public string edited { get; set; } // The ISO 8601 date format of the time that this resource was edited.
+        using System;
+        using System.Collections.Generic;
+
+        using System.Text.Json;
+        using System.Text.Json.Serialization;
+        using System.Globalization;
+
+        public partial class Film
+        {
+            [JsonPropertyName("count")]
+            public long Count { get; set; }
+
+            [JsonPropertyName("next")]
+            public object Next { get; set; }
+
+            [JsonPropertyName("previous")]
+            public object Previous { get; set; }
+
+            [JsonPropertyName("results")]
+            public List<Result> Results { get; set; }
+        }
+
+        public partial class Result
+        {
+            [JsonPropertyName("title")]
+            public string Title { get; set; }
+
+            [JsonPropertyName("episode_id")]
+            public long EpisodeId { get; set; }
+
+            [JsonPropertyName("opening_crawl")]
+            public string OpeningCrawl { get; set; }
+
+            [JsonPropertyName("director")]
+            public string Director { get; set; }
+
+            [JsonPropertyName("producer")]
+            public string Producer { get; set; }
+
+            [JsonPropertyName("release_date")]
+            public DateTimeOffset ReleaseDate { get; set; }
+
+            [JsonPropertyName("characters")]
+            public List<Uri> Characters { get; set; }
+
+            [JsonPropertyName("planets")]
+            public List<Uri> Planets { get; set; }
+
+            [JsonPropertyName("starships")]
+            public List<Uri> Starships { get; set; }
+
+            [JsonPropertyName("vehicles")]
+            public List<Uri> Vehicles { get; set; }
+
+            [JsonPropertyName("species")]
+            public List<Uri> Species { get; set; }
+
+            [JsonPropertyName("created")]
+            public DateTimeOffset Created { get; set; }
+
+            [JsonPropertyName("edited")]
+            public DateTimeOffset Edited { get; set; }
+
+            [JsonPropertyName("url")]
+            public Uri Url { get; set; }
+        }
     }
 }
