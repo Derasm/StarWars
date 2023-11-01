@@ -6,11 +6,17 @@ namespace Web.Interfaces
 /// </summary>
     public interface ISwapiAPI
     {
-        Task<List<Film>> GetFilms(string title);
-        Task<List<People>> GetPeople(string name);
-        Task<List<Starship>> GetStarship(string name, string model);
-        Task<List<Planet>> GetPlanet(string name);
-        Task<List<Species>> GetSpecies(string name);
-        Task<List<Vehicle>> GetVehicle(string name, string model);
+        List<Film> GetFilms();
+        Film GetFilm(string title);
+        List<People> GetPeoples();
+        People GetPeople(string name);
+        List<Starship> GetStarships();
+        Starship GetStarship(string name, string model);
+        List<Planet> GetPlanets();
+        Planet GetPlanet(string name);
+        List<Species> GetSpecies();
+        Species GetSpecies(string name);
+        List<Vehicle> GetVehicles();
+        Vehicle GetVehicle(string name, string model);
     }
 }
