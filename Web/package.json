@@ -1,0 +1,18 @@
+{
+  "name": "web",
+  "version": "1.0.0",
+  "description": "1. What kind of project to make\r 2. what kind of technology to use\r 3. how the project should be viewable - install / host?",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+      "build": " NODE_ENV=development ./node_modules/tailwindcss/lib/cli.js -i ./wwwroot/Styles/Tailwind.css -o ./wwwroot/css/app.css",
+      "watch": " NODE_ENV=development ./node_modules/tailwindcss/lib/cli.js -i ./wwwroot/Styles/Tailwind.css -o ./wwwroot/css/app.css --watch",
+      "release": "NODE_ENV=production ./node_modules/tailwindcss/lib/cli.js -i ./wwwroot/Styles/Tailwind.css -o ./wwwroot/css/app.css --minify"
+    
+  },
+  "author": "Dennis Rasmussen",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.3.5"
+  }
+}
