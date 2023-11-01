@@ -10,12 +10,32 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.13" />
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.4" />
+    <Compile Remove="VueJS Frontend\**" />
+    <Content Remove="VueJS Frontend\**" />
+    <EmbeddedResource Remove="VueJS Frontend\**" />
+    <None Remove="VueJS Frontend\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="VueJS Frontend\" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.13" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.4" />
   </ItemGroup>
+<!--Check for NPM install - first step--> 
+  <Target Name="CheckForNpm" BeforeTargets="NpmInstall">
+    <Exec Command="npm -v" ContinueOnError="true">
+      <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+    </Exec>
+    <Error Condition="'$(ErrorCode)' != '0'" Text="You must install NPM to build this project" />
+  </Target>
+  <!--Then install NPM-->
+  <Target Name="NpmInstall" BeforeTargets="BuildCSS" Inputs="package.json" Outputs="$(NpmLastInstall)">
+    <Exec Command="npm install" />
+    <Touch Files="$(NpmLastInstall)" AlwaysCreate="true" />
+  </Target>
+  <!--Lastly build CSS-->
+  <Target Name="BuildCSS" BeforeTargets="Compile">
+    <Exec Command="npm run build" Condition=" '$(Configuration)' == 'Debug' " />
+    <Exec Command="npm run release" Condition=" '$(Configuration)' == 'Release' " />
+  </Target>
 
 </Project>
