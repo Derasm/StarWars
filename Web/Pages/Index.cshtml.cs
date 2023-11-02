@@ -11,8 +11,13 @@ namespace Web.Pages
         // API reference. 
         APIController api = new APIController();
         public List<Film> films = null;
-        List<Planet> planets = null;
-        public string initialFilm = "new hope";
+        public List<Planet> planets = null;
+        public List<Vehicle> vehicles = null;
+        public List<People> peoples = null;
+        public List<Species> species = null;
+        public List<Starship> starships = null;
+
+
         private readonly ILogger<IndexModel> _logger;
         // this should in theory be the constructor for the page.
         public IndexModel(ILogger<IndexModel> logger)
@@ -22,22 +27,44 @@ namespace Web.Pages
             Console.WriteLine(films);
 
         }
-        //This is called on page load.
+        /// <summary>
+        /// Called on pageload
+        /// This is going to be ugly, and is basically me being angry at Razorpages and binding methods to html.
+        /// </summary>
         public void OnGet()
         {
+            //get films, planets, vehicles, species, starships, peoples.
+            films = GetFilms();
+            planets = GetPlanets();
+            vehicles = GetVehicles();
+            peoples = GetPeoples();
+            species = GetSpecies();
+            starships = GetStarships();
 
         }
-        public void TestMethod()
-        {
-            initialFilm = "test - after method call";
-        }
-        public List<Film> GetFilms()
+
+        private List<Film> GetFilms()
         {
             return api.GetFilms();
         }
-        public List<Planet> GetPlanets()
+        private List<Planet> GetPlanets()
         {
             return api.GetPlanets();
+        }
+        private List<Vehicle> GetVehicles() {
+            return api.GetVehicles();
+        }
+        private List<People> GetPeoples()
+        {
+            return api.GetPeoples();
+        }
+        private List<Species> GetSpecies()
+        {
+            return api.GetSpecies();
+        }
+        private List<Starship> GetStarships()
+        {
+            return api.GetStarships();
         }
 
     }

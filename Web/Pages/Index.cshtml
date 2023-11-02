@@ -6,28 +6,54 @@
 
 <div class="text-center h-screen w-screen ">
     <h1 class="text-4xl text-white pt-6">Star Wars interactive Wiki</h1>
-    <div>
-        This will feature a square in the center, with a bog for each type of
-        thing that can be searched and a scroll parallax in the center giving
-        information.
-    </div>
-    @* This is going to be real ugly, but absolute position circle with the buttons for getting data. *@
+<p class="text-white">This should have been an interactive wiki, but Blazor has a special place in hell where it belongs.</p>
+    @* This is going to be real ugly, but absolute position circle with the
+        buttons for getting data. *@
     <div class="flex h-screen w-screen justify-center items-center">
         <div class="bg-primary text-white p-4">
-            This is a centered box. Will contain information on clicked image
-        </div>
-        <btn  class="bg-red-800 text-white hover:bg-slate-500 hover:cursor-pointer">Films</btn>
-    </div>
-    <div @if (Model.films != null)
-    {
-        @Model.films
-    }>
-        
-    </div>
-    <br />
-    To test the concept of fetching data:
-    <br />
-    @Model.initialFilm
+            This is a centered box.
+            <br /> All film titles:
+            <div class="flex">
+                @foreach (var film in Model.films)
+                {
+                    <div>@film.Title</div>
+                }
+            </div>
+            <br /> All planets
+            <div class="flex">
+                @foreach (var planet in Model.planets)
+                {
+                    <div>@planet.Name</div>
+                }
+            </div><br /> First 10 peoples:
+                  <div class="flex">
+            @* Mostly just because its possible to do this. Its ugly as heck, but wanted to see if i could. I feel slightly dirty now. *@
+                      @{
+                          int counter = 0;
+                          @foreach (var person in Model.peoples)
+                          {
+                              if (counter >= 5)
+                              {
+                                  break; // Exit the loop
+                              }
 
-</div>
-} 
+                              <p>@person.Name</p>
+
+                              counter++;
+                          }
+                      }
+                  </div><br /> All species names:
+            <div class="flex">
+                @foreach (var species in Model.species)
+                {
+                    <div>@species.Name</div>
+                }
+            </div><br /> All starship names:
+            <div class="flex">
+                @foreach (var starship in Model.starships)
+                {
+                    <div>@starship.Name</div>
+                }
+            </div>
+        </div>
+    </div>
