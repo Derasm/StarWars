@@ -85,5 +85,75 @@ namespace Web_Test
             //Assert
             Assert.IsNotNull(starshipList);
         }
+        [Test]
+        public void GetStarshipWithNameAndModel()
+        {
+            //Arrange
+            APIController controller = new APIController();
+            //Act
+            Starship starshipList = controller.GetStarship("x-wing", "x-wing");
+            //Assert
+            Assert.IsNotNull(starshipList);
+        }
+        [Test]
+        public void GetPlanets()
+        {
+            //Arrange
+            APIController controller = new APIController();
+            //Act
+            List<Planet> planetList = controller.GetPlanets();
+            //Assert
+            Assert.IsNotNull(planetList);
+        }
+        [Test]
+        public void GetPlanet()
+        {
+            //Arrange
+            APIController controller = new APIController();
+            //Act
+            Planet planetList = controller.GetPlanet("tatooine");
+            //Assert
+            Assert.IsNotNull(planetList);
+        }
+        [Test]
+        public void GetSpecies()
+        {
+            //Arrange
+            APIController controller = new APIController();
+            //Act
+            List<Species> speciesList = controller.GetSpecies();
+            //Assert
+            Assert.IsNotNull(speciesList);
+        }
+        [Test]
+        public void GetSpeciesWithName()
+        {
+            //Arrange
+            APIController controller = new APIController();
+            //Act
+            List<Species> speciesList = controller.GetSpecies("human");
+            //Assert
+            Assert.IsNotNull(speciesList);
+        }
+        [Test]
+        public void GetVehicles()
+        {
+            //Arrange
+            APIController controller = new APIController();
+            //Act
+            List<Vehicle> vehicleList = controller.GetVehicles();
+            //Assert
+            Assert.IsNotNull(vehicleList);
+        }
+        [Test]
+        public void GetVehicleWithName()
+        {
+            //Arrange
+            APIController controller = new APIController();
+            //Act
+            List<Vehicle> vehicleList = controller.GetVehicle("x-wing", null);
+            //Assert
+            Assert.IsNotNull(vehicleList);
+        }
     }
 }

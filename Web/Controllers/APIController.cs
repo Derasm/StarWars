@@ -139,11 +139,11 @@ namespace Web.Controllers
             return speciesList;
         }
 
-        public Species GetSpecies(string name)
+        public List<Species> GetSpecies(string name)
         {
             JsonElement apiResult = Request($"/species/?search={name}").Result;
             List<Species>speciesList = JsonSerializer.Deserialize<List<Species>>(apiResult)!;
-            return speciesList.First();
+            return speciesList;
         }
 
         public List<Vehicle> GetVehicles()
@@ -153,7 +153,7 @@ namespace Web.Controllers
             return vehicleList;
         }
 
-        public Vehicle GetVehicle(string name, string model)
+        public List<Vehicle> GetVehicle(string? name, string? model)
         {
             JsonElement apiResult = default;
             //only search on name
@@ -172,7 +172,7 @@ namespace Web.Controllers
                 apiResult = Request($"/vehicles/?search={name} {model}").Result;
             }
             List<Vehicle> vehicleList = JsonSerializer.Deserialize<List<Vehicle>>(apiResult)!;
-            return vehicleList.First();
+            return vehicleList;
         }
     }
 }
