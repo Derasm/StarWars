@@ -34,6 +34,11 @@ Based on these, the most likely to be implemented in the timeframe fulfilling re
 - [x] Setup project locally
 - [x] Add tailwindCss
 ### MVP
-- [] Get data from SWAPI.dev
+- [x] Get data from SWAPI.dev
 - [] Display data in a simple manner
 - [] Add a way to pin data
+- 
+
+## Current issues
+- JSON serializer isn't serializing to correct format. The SWAPI has a weird format with the result packed into extra stuff. 
+- Frontend isn't setup. Not an issue, just annoying. 
