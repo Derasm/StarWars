@@ -22,22 +22,33 @@ namespace Web.Controllers
                 BaseAddress = new Uri("https://swapi.dev/api")
             };
         }
-
-        private async Task<string> Request(string url)
+        // this makes the request to the API and returns the Result portion of the response. 
+        private async Task<JsonElement> Request(string url)
         {
             string result = "";
-            string requestURl = client.BaseAddress.ToString();
+            string requestURl = client.BaseAddress.ToString(); // Debugging purpose - to see what the actual API used is. '
+            await Console.Out.WriteLineAsync(requestURl);
+            // It appears client removes the "api" portion of the api - for some reason. 
             HttpResponseMessage response = await client.GetAsync("api"+url);
+            JsonElement resultsElement = default;
+            // if the response is succesful, shave off the first portion of it (containing amount, next call and previous call. they are unneeded).
             if (response.IsSuccessStatusCode)
             {
-                result = await response.Content.ReadAsStringAsync();
+
+                string jsonResponse = await response.Content.ReadAsStringAsync();
+
+                // Parse the JSON response
+                JsonDocument document = JsonDocument.Parse(jsonResponse);
+
+                // Extract the 'results' array
+                resultsElement = document.RootElement.GetProperty("results");
             }
             // this only happens if the call isn't succesful
             else
             {
                 throw new Exception($"Something went wrong in fetching data from: {client.BaseAddress}");
             }
-            return result;
+            return resultsElement;
         }
 
 
@@ -49,34 +60,34 @@ namespace Web.Controllers
         // This could easily become a oneliner, but that would sacrifice readability for 2 lines of code. Not worth it
         public List<Film> GetFilms()
         {
-            string apiResult = Request("/films/").Result;
+            JsonElement apiResult = Request("/films/").Result;
             List<Film> filmList = JsonSerializer.Deserialize<List<Film>>(apiResult)!;
             return filmList;
         }
 
         public Film GetFilm(string title)
         {
-            string apiResult = Request($"/films/?{title}?").Result;
+            JsonElement apiResult = Request($"/films/?{title}?").Result;
             Film filmList = JsonSerializer.Deserialize<Film>(apiResult)!;
             return filmList;
         }
 
         public List<People> GetPeoples()
         {
-            string apiResult = Request("/people/").Result;
+            JsonElement apiResult = Request("/people/").Result;
             List<People> peopleList = JsonSerializer.Deserialize<List<People>>(apiResult)!;
             return peopleList;
         }
         public People GetPeople(string name)
         {
-            string apiResult = Request($"/people/?{name}?").Result;
+            JsonElement apiResult = Request($"/people/?{name}?").Result;
             People peopleList = JsonSerializer.Deserialize<People>(apiResult)!;
             return peopleList;
         }
 
         public List<Starship> GetStarships()
         {
-            string apiResult = Request("/starships/").Result;
+            JsonElement apiResult = Request("/starships/").Result;
             List<Starship> starshipList = JsonSerializer.Deserialize<List<Starship>>(apiResult)!;
             return starshipList;
         }
@@ -88,7 +99,7 @@ namespace Web.Controllers
         /// <returns></returns>
         public Starship GetStarship(string name, string model)
         {
-            string apiResult = "";
+            JsonElement apiResult = default;
             //only search on name
             if (model == null)
             {
@@ -110,42 +121,42 @@ namespace Web.Controllers
 
         public List<Planet> GetPlanets()
         {
-            string apiResult = Request("/planets/").Result;
+            JsonElement apiResult = Request("/planets/").Result;
             List<Planet> planetList = JsonSerializer.Deserialize<List<Planet>>(apiResult)!;
             return planetList;
         }
 
         public Planet GetPlanet(string name)
         {
-            string apiResult = Request($"/planets/?{name}?").Result;
+            JsonElement apiResult = Request($"/planets/?{name}?").Result;
             Planet planetList = JsonSerializer.Deserialize<Planet>(apiResult)!;
             return planetList;
         }
 
         public List<Species> GetSpecies()
         {
-            string apiResult = Request("/species/").Result;
+            JsonElement apiResult = Request("/species/").Result;
             List<Species> speciesList = JsonSerializer.Deserialize<List<Species>>(apiResult)!;
             return speciesList;
         }
 
         public Species GetSpecies(string name)
         {
-            string apiResult = Request($"/species/?{name}?").Result;
+            JsonElement apiResult = Request($"/species/?{name}?").Result;
             Species speciesList = JsonSerializer.Deserialize<Species>(apiResult)!;
             return speciesList;
         }
 
         public List<Vehicle> GetVehicles()
         {
-            string apiResult = Request("/vehicles/").Result;
+            JsonElement apiResult = Request("/vehicles/").Result;
             List<Vehicle> vehicleList = JsonSerializer.Deserialize<List<Vehicle>>(apiResult)!;
             return vehicleList;
         }
 
         public Vehicle GetVehicle(string name, string model)
         {
-            string apiResult = "";
+            JsonElement apiResult = default;
             //only search on name
             if (model == null)
             {
