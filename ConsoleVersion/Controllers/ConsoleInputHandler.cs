@@ -11,7 +11,7 @@ namespace ConsoleVersion.Controllers
     {
         public string GetUserInput()
         {
-           
+
             return Console.ReadLine();
         }
         public OptionEnum UserOptions(string userInput)
@@ -39,6 +39,9 @@ namespace ConsoleVersion.Controllers
                     break;
                 case "6":
                     userOption = OptionEnum.Vehicles;
+                    break;
+                case "start":
+                    userOption = OptionEnum.Start;
                     break;
                 default:
                     userOption = OptionEnum.None;

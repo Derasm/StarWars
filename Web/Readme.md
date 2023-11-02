@@ -50,5 +50,5 @@ Based on these, the most likely to be implemented in the timeframe fulfilling re
 - 
 
 ## Current issues
-- Display the data in the frontend - currently running into issue of binding backend and frontend together due to razorpages being weird.
-- Frontend isn't setup. Not an issue, just annoying. 
+- Display the data in the frontend - currently running into issue of binding backend and frontend together due to razorpages being annoying.
+- Transitioning to Console application for that Retro feel.
