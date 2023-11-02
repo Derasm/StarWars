@@ -9,7 +9,7 @@ namespace Web.Interfaces
         List<Film> GetFilms();
         Film GetFilm(string title);
         List<People> GetPeoples();
-        People GetPeople(string name);
+        People GetPerson(string name);
         List<Starship> GetStarships();
         Starship GetStarship(string name, string model);
         List<Planet> GetPlanets();

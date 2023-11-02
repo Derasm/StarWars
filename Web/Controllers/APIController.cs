@@ -25,12 +25,10 @@ namespace Web.Controllers
         // this makes the request to the API and returns the Result portion of the response. 
         private async Task<JsonElement> Request(string url)
         {
-            string result = "";
-            string requestURl = client.BaseAddress.ToString(); // Debugging purpose - to see what the actual API used is. '
-            await Console.Out.WriteLineAsync(requestURl);
-            // It appears client removes the "api" portion of the api - for some reason. 
-            HttpResponseMessage response = await client.GetAsync("api"+url);
+            //for some reason it removes the "api" portion
+            HttpResponseMessage response = await client.GetAsync("api/"+url);
             JsonElement resultsElement = default;
+
             // if the response is succesful, shave off the first portion of it (containing amount, next call and previous call. they are unneeded).
             if (response.IsSuccessStatusCode)
             {
@@ -67,9 +65,10 @@ namespace Web.Controllers
 
         public Film GetFilm(string title)
         {
-            JsonElement apiResult = Request($"/films/?{title}?").Result;
-            Film filmList = JsonSerializer.Deserialize<Film>(apiResult)!;
-            return filmList;
+            JsonElement apiResult = Request($"/films/?search={title}").Result;
+            string jsonElementType = apiResult.GetRawText();
+            List<Film> films = JsonSerializer.Deserialize<List<Film>>(apiResult);
+            return films.First();
         }
 
         public List<People> GetPeoples()
@@ -78,11 +77,11 @@ namespace Web.Controllers
             List<People> peopleList = JsonSerializer.Deserialize<List<People>>(apiResult)!;
             return peopleList;
         }
-        public People GetPeople(string name)
+        public People GetPerson(string name)
         {
-            JsonElement apiResult = Request($"/people/?{name}?").Result;
-            People peopleList = JsonSerializer.Deserialize<People>(apiResult)!;
-            return peopleList;
+            JsonElement apiResult = Request($"/people/?search={name}").Result;
+            List<People> peopleList = JsonSerializer.Deserialize<List<People>>(apiResult)!;
+            return peopleList.First();
         }
 
         public List<Starship> GetStarships()
@@ -97,26 +96,26 @@ namespace Web.Controllers
         /// <param name="name"> string - case sensitive partial match</param>
         /// <param name="model"> string - case sensitive partial match</param>
         /// <returns></returns>
-        public Starship GetStarship(string name, string model)
+        public Starship GetStarship(string? name, string? model)
         {
             JsonElement apiResult = default;
             //only search on name
             if (model == null)
             {
-                apiResult = Request($"/starships/?{name}?").Result;
+                apiResult = Request($"/starships/?search={name}").Result;
             }
             //only search on model
             if (name == null)
             {
-                apiResult = Request($"/starships/?{model}?").Result;
+                apiResult = Request($"/starships/?search={model}").Result;
             }
             //if neither are null
             if (name != null && model != null)
             {
-                apiResult = Request($"/starships/?{name}?/?{model}?").Result;
+                apiResult = Request($"/starships/?search={name} {model}").Result;
             }
-            Starship starshipList = JsonSerializer.Deserialize<Starship>(apiResult)!;
-            return starshipList;
+            List<Starship> starshipList = JsonSerializer.Deserialize<List<Starship>>(apiResult)!;
+            return starshipList.First();
         }
 
         public List<Planet> GetPlanets()
@@ -128,9 +127,9 @@ namespace Web.Controllers
 
         public Planet GetPlanet(string name)
         {
-            JsonElement apiResult = Request($"/planets/?{name}?").Result;
-            Planet planetList = JsonSerializer.Deserialize<Planet>(apiResult)!;
-            return planetList;
+            JsonElement apiResult = Request($"/planets/?search={name}").Result;
+            List<Planet> planetList = JsonSerializer.Deserialize<List<Planet>>(apiResult)!;
+            return planetList.First();
         }
 
         public List<Species> GetSpecies()
@@ -142,9 +141,9 @@ namespace Web.Controllers
 
         public Species GetSpecies(string name)
         {
-            JsonElement apiResult = Request($"/species/?{name}?").Result;
-            Species speciesList = JsonSerializer.Deserialize<Species>(apiResult)!;
-            return speciesList;
+            JsonElement apiResult = Request($"/species/?search={name}").Result;
+            List<Species>speciesList = JsonSerializer.Deserialize<List<Species>>(apiResult)!;
+            return speciesList.First();
         }
 
         public List<Vehicle> GetVehicles()
@@ -160,20 +159,20 @@ namespace Web.Controllers
             //only search on name
             if (model == null)
             {
-                apiResult = Request($"/vehicles/?{name}?").Result;
+                apiResult = Request($"/vehicles/?search={name}").Result;
             }
             //only search on model
             if (name == null)
             {
-                apiResult = Request($"/vehicles/?{model}?").Result;
+                apiResult = Request($"/vehicles/?search={model}").Result;
             }
             //if neither are null
             if (name != null && model != null)
             {
-                apiResult = Request($"/vehicles/?{name}?/?{model}?").Result;
+                apiResult = Request($"/vehicles/?search={name} {model}").Result;
             }
-            Vehicle vehicleList = JsonSerializer.Deserialize<Vehicle>(apiResult)!;
-            return vehicleList;
+            List<Vehicle> vehicleList = JsonSerializer.Deserialize<List<Vehicle>>(apiResult)!;
+            return vehicleList.First();
         }
     }
 }
