@@ -1,5 +1,5 @@
-using Web.Controllers;
-using Web.Models;
+using ConsoleVersion.Controllers;
+using ConsoleVersion.Models;
 
 namespace Web_Test
 {
