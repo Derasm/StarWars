@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "cross-env NODE_ENV=development ./node_modules/tailwindcss/lib/cli.js -i ./wwwroot/Styles/Tailwind.css -o ./wwwroot/css/TailwindCss.css --watch",
-    "watch": "cross-env NODE_ENV=development ./node_modules/tailwindcss/lib/cli.js -i ./wwwroot/Styles/Tailwind.css -o ./wwwroot/css/TailwindCss.css --watch",
-    "release": "cross-env NODE_ENV=production ./node_modules/tailwindcss/lib/cli.js -i ./wwwroot/Styles/Tailwind.css -o ./wwwroot/css/TailwindCss.css --minify"
+    "build": "cross-env NODE_ENV=development ./node_modules/tailwindcss/lib/cli.js -i ./wwwroot/Styles/Tailwind.css -o ./wwwroot/css/app.css --watch",
+    "watch": "cross-env NODE_ENV=development ./node_modules/tailwindcss/lib/cli.js -i ./wwwroot/Styles/Tailwind.css -o ./wwwroot/css/app.css --watch",
+    "release": "cross-env NODE_ENV=production ./node_modules/tailwindcss/lib/cli.js -i ./wwwroot/Styles/Tailwind.css -o ./wwwroot/css/app.css --minify"
   },
   "author": "Dennis Rasmussen",
   "license": "ISC",

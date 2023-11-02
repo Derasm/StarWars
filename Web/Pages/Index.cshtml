@@ -11,13 +11,23 @@
         thing that can be searched and a scroll parallax in the center giving
         information.
     </div>
-    @* This is going to be real ugly, but absolute position circle with the buttons on *@
+    @* This is going to be real ugly, but absolute position circle with the buttons for getting data. *@
     <div class="flex h-screen w-screen justify-center items-center">
         <div class="bg-primary text-white p-4">
             This is a centered box. Will contain information on clicked image
-
         </div>
+        <btn  class="bg-red-800 text-white hover:bg-slate-500 hover:cursor-pointer">Films</btn>
+    </div>
+    <div @if (Model.films != null)
+    {
+        @Model.films
+    }>
         
     </div>
+    <br />
+    To test the concept of fetching data:
+    <br />
+    @Model.initialFilm
 
 </div>
+} 

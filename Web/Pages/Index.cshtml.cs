@@ -10,6 +10,9 @@ namespace Web.Pages
     {
         // API reference. 
         APIController api = new APIController();
+        public List<Film> films = null;
+        List<Planet> planets = null;
+        public string initialFilm = "new hope";
         private readonly ILogger<IndexModel> _logger;
         // this should in theory be the constructor for the page.
         public IndexModel(ILogger<IndexModel> logger)
@@ -19,10 +22,23 @@ namespace Web.Pages
             Console.WriteLine(films);
 
         }
-
+        //This is called on page load.
         public void OnGet()
         {
 
         }
+        public void TestMethod()
+        {
+            initialFilm = "test - after method call";
+        }
+        public List<Film> GetFilms()
+        {
+            return api.GetFilms();
+        }
+        public List<Planet> GetPlanets()
+        {
+            return api.GetPlanets();
+        }
+
     }
 }
