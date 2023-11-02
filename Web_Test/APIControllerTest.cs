@@ -41,7 +41,7 @@ namespace Web_Test
             //Arrange
             APIController controller = new APIController();
             //Act
-            List<People> personList = controller.GetPeoples();
+            List<People> personList = controller.GetPeople();
             //Assert
             Assert.IsNotNull(personList);
         }
