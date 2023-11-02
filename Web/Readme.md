@@ -32,9 +32,10 @@ Based on these, the most likely to be implemented in the timeframe fulfilling re
  
 ## Things to do:
 - [x] Setup project on github
-- [ ] Setup branches: Main, Stage, Dev. Stage is release, Dev merges into Stage. Main is initial setup. When a release has been made, merge Stage into Main for always clean. 
+- [x] Setup branches: Main, Stage, Dev. Stage is release, Dev merges into Stage. Main is initial setup. When a release has been made, merge Stage into Main for always clean. 
 - [] Tie frontend and backend together. Figure out how to send the data to frontend now that API's work as intended. 
-- [] Setup test project
+- [x] Setup test project
+- [x] Write tests for API.
 - [] Setup CI/CD pipeline
 - [] Add tests to the pipeline
 - []Include testing in merge to Stage. 
@@ -49,5 +50,5 @@ Based on these, the most likely to be implemented in the timeframe fulfilling re
 - 
 
 ## Current issues
-- Display the data in the frontend 
+- Display the data in the frontend - currently running into issue of binding backend and frontend together due to razorpages being weird.
 - Frontend isn't setup. Not an issue, just annoying. 
