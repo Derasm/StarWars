@@ -34,7 +34,10 @@ Based on these, the most likely to be implemented in the timeframe fulfilling re
 - [x] Setup project on github
 - [ ] Setup branches: Main, Stage, Dev. Stage is release, Dev merges into Stage. Main is initial setup. When a release has been made, merge Stage into Main for always clean. 
 - [] Tie frontend and backend together. Figure out how to send the data to frontend now that API's work as intended. 
-- [] Setup 
+- [] Setup test project
+- [] Setup CI/CD pipeline
+- [] Add tests to the pipeline
+- []Include testing in merge to Stage. 
 - [] Setup project on Azure - uncertain yet if this is needed. 
 - [] Setup project on Github pages
 - [x] Setup project locally
