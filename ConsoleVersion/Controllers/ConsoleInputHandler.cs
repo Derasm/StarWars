@@ -1,9 +1,4 @@
 ﻿using ConsoleVersion.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ConsoleVersion.Controllers
 {
@@ -11,7 +6,7 @@ namespace ConsoleVersion.Controllers
     {
         public string GetUserInput()
         {
-           
+
             return Console.ReadLine();
         }
         public OptionEnum UserOptions(string userInput)
@@ -39,6 +34,9 @@ namespace ConsoleVersion.Controllers
                     break;
                 case "6":
                     userOption = OptionEnum.Vehicles;
+                    break;
+                case "start":
+                    userOption = OptionEnum.Start;
                     break;
                 default:
                     userOption = OptionEnum.None;

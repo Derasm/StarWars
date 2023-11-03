@@ -14,6 +14,7 @@ namespace ConsoleVersion.Enums
         Species,
         Starships,
         Vehicles,
-        None
+        None,
+        Start
     }
 }
