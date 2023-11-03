@@ -1,7 +1,7 @@
 using ConsoleVersion.Controllers;
 using ConsoleVersion.Models;
 
-namespace Web_Test
+namespace Test_Suite
 {
     /// <summary>
     /// Technically this would be better to use a fake / mock API result instead,
@@ -21,7 +21,8 @@ namespace Web_Test
             Assert.IsNotNull(filmList);
         }
         [Test]
-        public void GetFilm() {
+        public void GetFilm()
+        {
             //Arrange
             APIController controller = new APIController();
             //Act - this gets the first film in the list, which is a new hope, and gets it in an async task
