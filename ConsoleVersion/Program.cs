@@ -20,14 +20,16 @@ class Program
             string userInput = inputHandler.GetUserInput();
             //handle the input from the user
             OptionEnum userOption = inputHandler.UserOptions(userInput);
-            Console.WriteLine("Returned to While loop");
             // handle the user options - breaking up the flow for now
             HandleOptions(userOption);
+
         }
     }
     static void HandleOptions(OptionEnum userOption)
     {
         ConsoleOutputHandler outputHandler = new ConsoleOutputHandler();
+        Console.Clear();
+
         switch (userOption)
         {
             case OptionEnum.Films:
