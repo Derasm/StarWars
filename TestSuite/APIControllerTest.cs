@@ -26,7 +26,7 @@ namespace Test_Suite
             //Arrange
             APIController controller = new APIController();
             //Act - this gets the first film in the list, which is a new hope, and gets it in an async task
-            Film filmList = controller.GetFilm("new hope");
+            Film filmList = controller.GetFilm("new");
             //Assert
             Assert.IsNotNull(filmList);
         }
